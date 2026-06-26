@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/teste")
+@CrossOrigin
 public class TransacaoController {
 
     private int proximoId = 4;

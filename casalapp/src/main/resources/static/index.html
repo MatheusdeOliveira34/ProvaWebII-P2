@@ -39,8 +39,15 @@
     <button onclick="criar()">Criar</button>
 
     <script>
+        const BASE_URL = "http://localhost:8080";
         async function carregar() {
-            const resposta = await fetch("/find-all-transactions");
+            const resposta = await fetch(BASE_URL + "/teste/find-all-transactions", {
+                method: "GET",
+                headers: {
+                "Content-Type": "application/json",
+                },
+            }
+            );
             const transacoes = await resposta.json();
             const lista = document.getElementById("lista");
             lista.innerHTML = "";
@@ -65,7 +72,7 @@
                 tipo: document.getElementById("tipo").value
             };
 
-            await fetch("/create-transaction", {
+            await fetch(BASE_URL + "/teste/create-transaction", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(transacao)
@@ -77,7 +84,7 @@
         }
 
         async function excluir(id) {
-            await fetch("/delete-transaction/" + id, { method: "DELETE" });
+            await fetch(BASE_URL + "/teste/delete-transaction/" + id, { method: "DELETE" });
             carregar();
         }
 
